@@ -144,6 +144,50 @@ foreach(var person in people) {
 // 5497141 Jane Doe
 ```
 
+### C# specific "new" keyword
+C# has a modifier `new` which can be used on `virtual` or `abstract` methods and properties. When used it instructs the compiler to use the `subclass`'s implementation in stead of the `superclass`'s. See [this blog post on MSDN](https://blogs.msdn.microsoft.com/csharpfaq/2004/03/12/whats-the-difference-between-override-and-new/) on the difference between `override` and `new`. **TL;DR** please try to **avoid** using the `new` keyword as it is confusing behaviour.
+
+```
+public class Customer : Person {
+    public string CustomerNumber { get; set; }
+    public new ToString() {
+        return $"{CustomerNumber} - {FirstName} {LastName}";
+    }
+}
+public class Employee : Person {
+    public int DepartmentId { get; set; }
+    public int ContractId { get; set; }
+    public new ToString() {
+        return $"{DepartmentId} - {FirstName} {LastName} ({ContractId})";
+    }
+}
+
+var people = new Person[] {
+    new Employee() { FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1985, 10, 11), DepartmentId = 5, ContractId = 854722 },
+    new Customer() { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1985, 10, 11), CustomerNumber = 5497141 }
+};
+
+foreach(var person in people) {
+    Console.WriteLine(person.ToString());
+    if(person is Employee) {
+        Employee emp = (Employee) person;
+        Console.WriteLine(emp.ToString());
+    }
+    if(person is Customer) {
+        Customer cust = (Customer) person; 
+        Console.WriteLine(cust.ToString());
+    } 
+}
+
+// Output:
+// John Doe ................... // calls Person.ToString()
+// 5 - John Doe (854722) ...... // calls Employee.ToString() because it was cast to Employee
+// Jane Doe ................... // calls Person.ToString()
+// 5497141 Jane Doe ........... // calls Customer.ToString() because it was cast to Customer
+```
+
+As said before, it's best **not to use** this feature, as it is only useful in egde cases and not for your typical project.
+
 ## References
 - https://chesterli0130.wordpress.com/2012/10/04/four-major-principles-of-object-oriented-programming-oop/
 - https://en.wikipedia.org/wiki/Object-oriented_programming
