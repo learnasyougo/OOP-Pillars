@@ -3,7 +3,6 @@
 2. [Abstraction](#abstraction)
 3. [Inheritance](#inheritance)
 4. [Polymorphism](#polymorphism)
-
 5. [References](#references)
 
 
@@ -44,6 +43,15 @@ public class Person {
 
 *Subclass*: a modular, derivative class, that inherits one or more properties from aanother class (it's *superclass*).<br/>
 *Superclass*: establishes a common interface and/or foundation of functionality which specialized *subclassed* can inherit.
+
+### Example
+In this example we encapsulate the data and methods used to calculate a person's `Age`. For the outside world, it's just a property on the `Person` object we can use.
+
+```
+public class Person {
+    public 
+}
+```
 
 ## Polymorphism
 > One name, many forms - poly-*(many)*-morph-*(forms)*-ism, refers to the ability to take multiple form.
