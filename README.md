@@ -7,7 +7,7 @@
 
 
 ## Encapsulation
-> **Hiding innecessary implementation details from the outside world.**
+> **Hiding unnecessary implementation details from the outside world.**
 Encapsulatiion is the hiding of data implementation by restricting access to accessors and mutators. It's major benefit is that it reduces system complexity by hiding unnecessary details from the outside world.
 It is actually 
 
