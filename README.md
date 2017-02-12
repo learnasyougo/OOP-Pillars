@@ -127,6 +127,23 @@ public class Employee : Person {
 }
 ```
 
+Below is some sample output
+
+```
+var people = new Person[] {
+    new Employee() { FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1985, 10, 11), DepartmentId = 5, ContractId = 854722 },
+    new Customer() { FirstName = "Jane", LastName = "Doe", DateOfBirth = new DateTime(1985, 10, 11), CustomerNumber = 5497141 }
+};
+
+foreach(var person in people) {
+    Console.WriteLine(person.ToString());
+}
+
+// Output:
+// 5 - John Doe (854722)
+// 5497141 Jane Doe
+```
+
 ## References
 - https://chesterli0130.wordpress.com/2012/10/04/four-major-principles-of-object-oriented-programming-oop/
 - https://en.wikipedia.org/wiki/Object-oriented_programming
