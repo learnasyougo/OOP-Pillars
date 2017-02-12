@@ -121,7 +121,9 @@ public class Customer : Person {
 public class Employee : Person {
     public int DepartmentId { get; set; }
     public int ContractId { get; set; }
-    return $"{DepartmentId} - {FirstName} {LastName} ({ContractId})";
+    public override ToString() {
+        return $"{DepartmentId} - {FirstName} {LastName} ({ContractId})";
+    }
 }
 ```
 
