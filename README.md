@@ -19,6 +19,8 @@ In this example we encapsulate the data and methods used to calculate a person's
 
 ```
 public class Person {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
     public int Age { 
         get {
             var today = DateTime.Today;
@@ -45,11 +47,35 @@ public class Person {
 *Superclass*: establishes a common interface and/or foundation of functionality which specialized *subclassed* can inherit.
 
 ### Example
-In this example we encapsulate the data and methods used to calculate a person's `Age`. For the outside world, it's just a property on the `Person` object we can use.
+In this example we have a superclass `Person`, that implements common methods and properties, the subclasses `Customer` and `Employee` each have their own varying data and behaviour.
 
 ```
 public class Person {
-    public 
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Age { 
+        get {
+            var today = DateTime.Today;
+            var age = DateTime.Today - DateOfBirth.Year;
+
+            if(age > today.AddYears(-age)) {
+                age--;
+            }
+
+            return age;
+        }
+    }
+    public DateTime DateOfBirth { get; set; }
+}
+```
+
+```
+public class Customer : Person {
+    public string CustomerNumber { get; set; }
+}
+public class Employee : Person {
+    public int DepartmentId { get; set; }
+    public int ContractId { get; set; }    
 }
 ```
 
@@ -58,6 +84,46 @@ public class Person {
 
 *Overriding*: decision to use which method is used at runtime.<br/>
 *Overloading*: decision to use which method is made at compile time.
+
+### Example
+Building from the example superclass `Person`, and the subclasses `Customer` and `Employee`, we will implement to method `ToString` differently, we *override* the method the method of the superclass. Since `ToString` is baked into each object in C#, we also use the keyword `override` in the superclass `Person`.
+
+```
+public class Person {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Age { 
+        get {
+            var today = DateTime.Today;
+            var age = DateTime.Today - DateOfBirth.Year;
+
+            if(age > today.AddYears(-age)) {
+                age--;
+            }
+
+            return age;
+        }
+    }
+    public DateTime DateOfBirth { get; set; }
+    public override ToString() {
+        return $"{FirstName} {LastName}";
+    }
+}
+```
+
+```
+public class Customer : Person {
+    public string CustomerNumber { get; set; }
+    public override ToString() {
+        return $"{CustomerNumber} - {FirstName} {LastName}";
+    }
+}
+public class Employee : Person {
+    public int DepartmentId { get; set; }
+    public int ContractId { get; set; }
+    return $"{DepartmentId} - {FirstName} {LastName} ({ContractId})";
+}
+```
 
 ## References
 - https://chesterli0130.wordpress.com/2012/10/04/four-major-principles-of-object-oriented-programming-oop/
