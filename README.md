@@ -4,6 +4,9 @@
 3. [Inheritance](#inheritance)
 4. [Polymorphism](#polymorphism)
 
+#### References
+- https://chesterli0130.wordpress.com/2012/10/04/four-major-principles-of-object-oriented-programming-oop/
+
 ## Abstraction
 > Abstraction is a process of exposing essential feautures of an entity by hiding the other irrelevant details.
 - Reduce complexity and increase efficiency
